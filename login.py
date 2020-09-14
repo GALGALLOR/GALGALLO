@@ -10,7 +10,7 @@ while 1 == 1:
         exit()
     if ('n') in x:
        username = input('get yourself a username ')
-       email = input('put the email ')
+       email = input('put an email ')
        password = input('choose a reasonable password ')
        df = pd.DataFrame(columns=['email','password'])
        for i in range(1):
