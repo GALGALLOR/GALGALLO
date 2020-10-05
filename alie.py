@@ -32,7 +32,7 @@ def record_audio():
 
             print(voice_data)
         except :  # error: recognizer does not understand
-            record_audio()
+            print('sorry, could not hear you')
         return  voice_data
 
 # get string and make a audio file to be played
