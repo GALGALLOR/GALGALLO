@@ -6,21 +6,30 @@ import time # to bring delays in the code
 #initialize the key codes for zoom
 MATH ='782 191 0689'
 MATH_PASS='123456'
+MATH_LINK='https://zoom.us/j/7821910689?pwd=SU9LREV0UVpZWHZLWW5nMWNYdENDQT09'
 MINE = '710 762 9261'
+MY_LINK  = 'https://zoom.us/s/91027223074'
 COMPUTER = '573 904 3667'
 COMPUTER_PASS = '12345678'
+COMPUTER_LINK='https://zoom.us/j/5739043667?pwd=Wm00b21PdWJxaXpLUUc5TzNyRHhLQT09'
 KISWAHILI='9548478307'
 KISWAHILI_PASS = '123456'
+KISWAHILI_LINK='https://zoom.us/j/9548478307?pwd=TCtMSHJ2ZmRqdnU2MWtQUEc1Y1FWdz09'
 ENGLISH='7563264376'
 ENGLISH_PASS = '123456'
+ENGLISH_LINK='https://zoom.us/j/7563264376?pwd=TFUrMlJwUXdKTlVvNmpVeUIxVHhFdz09'
 BIOLOGY='6292489277'
 BIOLOGY_PASS = '123456'
+BIOLOGY_LINK='https://zoom.us/j/6292489277?pwd=MjNFWG81QmN3Q0FvN21NTkgraGU3QT09'
 PHYSICS='9841406308'
 PHYSICS_PASS='123456'
+PHYSICS_LINK='https://zoom.us/j/9841406308?pwd=NXNQVmszWUFScGU1bkZtTTBoWDJQdz09'
 CHEMISTRY='7651793624'
 CHEMISTRY_PASS = '123456'
+CHEMISTRY_LINK='https://zoom.us/j/7651793624?pwd=N1lFUmM0aUZ5anB5WitOMVk1TEFydz09'
 HISTORY='9049924850'
 HISTORY_PASS = '12345678'
+HISTORY_LINK='https://zoom.us/j/9049924850?pwd=TWh5N0NwZUhFQkZMWjZvelNHdExUZz09'
 PATH ="C:/Program Files/chromedriver.exe"
 driver = webdriver.Chrome(PATH)
 
@@ -43,6 +52,7 @@ def aspeak(audio_string):
 def login():
     driver.get(
         'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
+
     email = driver.find_element_by_xpath('//*[@id="identifierId"]')
     email.send_keys('ga.roba@lightacademy.ac.ke')
     email.send_keys(Keys.ENTER)
@@ -63,363 +73,841 @@ def login():
     joinx.click()
     time.sleep(3)
 
-def join_class():
-    try:
-        if now.minute > 45:
-            driver.quit()
-            pyautogui.press('left')
-        elif now.minute <= 45:
-            time.sleep(7)
-            pyautogui.press('enter')
-            time.sleep(10)
-            pyautogui.keyDown('alt')
-            pyautogui.press('v')
-            pyautogui.keyUp('alt')
-            time.sleep(1800)
-            pyautogui.keyDown('tab')
-            pyautogui.press('esc')
-            pyautogui.keyUp('tab')
 
-    except:
-        pyautogui.press('left')
 
+firstlessonhour = int(input('what is the first lesson hour'))
+firstlessonminute = int(input('what is the minute'))
+day = input('what day is it')
+
+hour_duration = firstlessonhour-now.hour
+minute_duration= firstlessonminute-now.minute
+seconds = hour_duration*60*60
+seconds=seconds+minute_duration*60
 while 1==1:
-    if now.strftime('%A')=='Wednesday':
-        if now.hour==9:
-            login()
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(7)
-            join = driver.find_element_by_xpath('//*[@id="join-confno"]')
-            join.send_keys(KISWAHILI)
-            join.send_keys(Keys.ENTER)
-            time.sleep(5)
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(5)
-            pyautogui.typewrite(KISWAHILI_PASS)
-            pyautogui.press('enter')
-            for num in range(1):
-                aspeak('WAKE UP FOR YOUR KISWAHILI LESSON')
+    seconds = seconds-1
+    print(seconds)
+    time.sleep(1)
+    pyautogui.press('shift')
+    if seconds==0:
+        print('time is upppppp')
+        break
 
-            join_class()
-        elif now.hour==11:
-            login()
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(7)
-            join = driver.find_element_by_xpath('//*[@id="join-confno"]')
-            join.send_keys(CHEMISTRY)
-            join.send_keys(Keys.ENTER)
-            time.sleep(5)
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(5)
-            pyautogui.typewrite(CHEMISTRY_PASS)
-            pyautogui.press('enter')
-            for num in range(1):
-                aspeak('WAKE UP FOR YOUR CHEMISTRY LESSON')
+if 'ednesday' in day:
+    #LESSON1
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    join = driver.find_element_by_xpath('//*[@id="join-confno"]')
+    join.send_keys(KISWAHILI)
+    join.send_keys(Keys.ENTER)
+    time.sleep(5)
 
-            join_class()
-        elif now.hour == 12:
-            login()
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(7)
-            join = driver.find_element_by_xpath('//*[@id="join-confno"]')
-            join.send_keys(PHYSICS)
-            join.send_keys(Keys.ENTER)
-            time.sleep(5)
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(5)
-            pyautogui.typewrite(PHYSICS_PASS)
-            pyautogui.press('enter')
-            for num in range(1):
-                aspeak('WAKE UP FOR YOUR PHYSICS LESSON')
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.typewrite(KISWAHILI_PASS)
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
+    hour_duration=2
+    seconds = hour_duration * 60 * 60
+    seconds = seconds + minute_duration * 60
+    while 1 == 1:
+        seconds = seconds - 1
+        print(seconds)
+        time.sleep(1)
+        pyautogui.press('shift')
 
-            join_class()
-        elif now.hour == 13:
-            login()
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(7)
-            join = driver.find_element_by_xpath('//*[@id="join-confno"]')
-            join.send_keys(HISTORY)
-            join.send_keys(Keys.ENTER)
-            time.sleep(5)
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(5)
-            pyautogui.typewrite(HISTORY_PASS)
-            pyautogui.press('enter')
-            for num in range(1):
-                aspeak('WAKE UP FOR YOUR HISTORY LESSON')
+        if seconds == 0:
+            print('time is upppppp')
+            break
+    #LESSON2
+    PATH ="C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get('https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
 
-            join_class()
-        else:
-            pyautogui.press('left')
-    elif now.strftime('%A')=='Thursday':
-        if now.hour==9:
-            login()
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(7)
-            join = driver.find_element_by_xpath('//*[@id="join-confno"]')
-            join.send_keys(KISWAHILI)
-            join.send_keys(Keys.ENTER)
-            time.sleep(5)
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(5)
-            pyautogui.typewrite(KISWAHILI_PASS)
-            pyautogui.press('enter')
-            for num in range(1):
-                aspeak('WAKE UP FOR YOUR KISWAHILI LESSON')
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    driver.get(CHEMISTRY_LINK)
+    time.sleep(5)
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
 
-            join_class()
-        elif now.hour==10:
-            login()
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(7)
-            join = driver.find_element_by_xpath('//*[@id="join-confno"]')
-            join.send_keys(PHYSICS)
-            join.send_keys(Keys.ENTER)
-            time.sleep(5)
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(5)
-            pyautogui.typewrite(PHYSICS_PASS)
-            pyautogui.press('enter')
-            for num in range(1):
-                aspeak('WAKE UP FOR YOUR PHYSICS LESSON')
+    seconds = hour_duration * 60 * 60
+    seconds = seconds + minute_duration * 60
+    while 1 == 1:
+        seconds = seconds - 1
+        print(seconds)
+        time.sleep(1)
+        pyautogui.press('shift')
 
-            join_class()
-        elif now.hour==11:
-            login()
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(7)
-            join = driver.find_element_by_xpath('//*[@id="join-confno"]')
-            join.send_keys(BIOLOGY)
-            join.send_keys(Keys.ENTER)
-            time.sleep(5)
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(5)
-            pyautogui.typewrite(BIOLOGY_PASS)
-            pyautogui.press('enter')
-            for num in range(1):
-                aspeak('WAKE UP FOR YOUR BIOLOGY LESSON')
+        if seconds == 0:
+            print('time is upppppp')
+            break
+    #LESSON3
+    PATH = "C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get(
+        'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
 
-            join_class()
-        elif now.hour == 12:
-            login()
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(7)
-            join = driver.find_element_by_xpath('//*[@id="join-confno"]')
-            join.send_keys(BIOLOGY)
-            join.send_keys(Keys.ENTER)
-            time.sleep(5)
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(5)
-            pyautogui.typewrite(BIOLOGY_PASS)
-            pyautogui.press('enter')
-            for num in range(1):
-                aspeak('WAKE UP FOR YOUR BIOLOGY LESSON')
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    driver.get(PHYSICS_LINK)
+    time.sleep(5)
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
+    hour_duration=2
+    seconds = hour_duration * 60 * 60
+    seconds = seconds + minute_duration * 60
+    while 1 == 1:
+        seconds = seconds - 1
+        print(seconds)
+        time.sleep(1)
+        pyautogui.press('shift')
 
-            join_class()
-        elif now.hour == 13:
-            login()
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(7)
-            join = driver.find_element_by_xpath('//*[@id="join-confno"]')
-            join.send_keys(ENGLISH)
-            join.send_keys(Keys.ENTER)
-            time.sleep(5)
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(5)
-            pyautogui.typewrite(ENGLISH_PASS)
-            pyautogui.press('enter')
-            for num in range(1):
-                aspeak('WAKE UP FOR YOUR ENGLISH LESSON')
+        if seconds == 0:
+            print('time is upppppp')
+            break
+    #LESSON4
+    PATH = "C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get(
+        'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
 
-            join_class()
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    driver.get(HISTORY_LINK)
+    time.sleep(5)
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('enter')
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
+    hour_duration=1
+    seconds = hour_duration * 60 * 60
+    seconds = seconds + minute_duration * 60
+    while 1 == 1:
+        seconds = seconds - 1
+        print(seconds)
+        time.sleep(1)
+        pyautogui.press('shift')
 
-        else:
-            pyautogui.press('left')
-    elif now.strftime('%A')=='Monday':
-        if now.hour==9:
-            login()
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(7)
-            join = driver.find_element_by_xpath('//*[@id="join-confno"]')
-            join.send_keys(BIOLOGY)
-            join.send_keys(Keys.ENTER)
-            time.sleep(5)
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(5)
-            pyautogui.typewrite(BIOLOGY_PASS)
-            pyautogui.press('enter')
-            for num in range(1):
-                aspeak('WAKE UP FOR YOUR BIOLOGY LESSON')
+        if seconds == 0:
+            print('time is upppppp')
+            break
 
-            join_class()
-        elif now.hour==11:
-            login()
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(7)
-            join = driver.find_element_by_xpath('//*[@id="join-confno"]')
-            join.send_keys(CHEMISTRY)
-            join.send_keys(Keys.ENTER)
-            time.sleep(5)
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(5)
-            pyautogui.typewrite(CHEMISTRY_PASS)
-            pyautogui.press('enter')
-            for num in range(1):
-                aspeak('WAKE UP FOR YOUR CHEMISTRY LESSON')
 
-            join_class()
-        elif now.hour == 12:
-            login()
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(7)
-            join = driver.find_element_by_xpath('//*[@id="join-confno"]')
-            join.send_keys(MATH)
-            join.send_keys(Keys.ENTER)
-            time.sleep(5)
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(5)
-            pyautogui.typewrite(MATH_PASS)
-            pyautogui.press('enter')
-            for num in range(1):
-                aspeak('WAKE UP FOR YOUR MATHEMATICS LESSON')
+if 'hursday' in day:
+    #LESSON1
+    PATH = "C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get(
+        'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
 
-            join_class()
-        elif now.hour == 13:
-            login()
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(7)
-            join = driver.find_element_by_xpath('//*[@id="join-confno"]')
-            join.send_keys(ENGLISH)
-            join.send_keys(Keys.ENTER)
-            time.sleep(5)
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(5)
-            pyautogui.typewrite(ENGLISH_PASS)
-            pyautogui.press('enter')
-            for num in range(1):
-                aspeak('WAKE UP FOR YOUR ENGLISH LESSON')
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    join = driver.find_element_by_xpath('//*[@id="join-confno"]')
+    join.send_keys(KISWAHILI)
+    join.send_keys(Keys.ENTER)
+    time.sleep(5)
 
-            join_class()
-        else:
-            pyautogui.press('left')
-    elif now.strftime('%A')=='Tuesday':
-        if now.hour==9:
-            login()
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(7)
-            join = driver.find_element_by_xpath('//*[@id="join-confno"]')
-            join.send_keys(KISWAHILI)
-            join.send_keys(Keys.ENTER)
-            time.sleep(5)
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(5)
-            pyautogui.typewrite(KISWAHILI_PASS)
-            pyautogui.press('enter')
-            for num in range(1):
-                aspeak('WAKE UP FOR YOUR KISWAHILI LESSON')
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.typewrite(KISWAHILI_PASS)
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
+    hour_duration=1
+    seconds = hour_duration * 60 * 60
+    seconds = seconds + minute_duration * 60
+    while 1 == 1:
+        seconds = seconds - 1
+        print(seconds)
+        time.sleep(1)
+        pyautogui.press('shift')
 
-            join_class()
-        elif now.hour==10:
-            login()
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(7)
-            join = driver.find_element_by_xpath('//*[@id="join-confno"]')
-            join.send_keys(MATH)
-            join.send_keys(Keys.ENTER)
-            time.sleep(5)
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(5)
-            pyautogui.typewrite(MATH_PASS)
-            pyautogui.press('enter')
-            for num in range(1):
-                aspeak('WAKE UP FOR YOUR MATHEMATICS LESSON')
+        if seconds == 0:
+            print('time is upppppp')
+            break
+    #LESSON2
+    PATH = "C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get(
+        'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
 
-            join_class()
-        elif now.hour==11:
-            login()
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(7)
-            join = driver.find_element_by_xpath('//*[@id="join-confno"]')
-            join.send_keys(HISTORY)
-            join.send_keys(Keys.ENTER)
-            time.sleep(5)
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(5)
-            pyautogui.typewrite(HISTORY_PASS)
-            pyautogui.press('enter')
-            for num in range(1):
-                aspeak('WAKE UP FOR YOUR HISTORY LESSON')
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    driver.get(PHYSICS_LINK)
+    time.sleep(5)
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
 
-            join_class()
-        elif now.hour == 12:
-            login()
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(7)
-            join = driver.find_element_by_xpath('//*[@id="join-confno"]')
-            join.send_keys(COMPUTER)
-            join.send_keys(Keys.ENTER)
-            time.sleep(5)
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(5)
-            pyautogui.typewrite(COMPUTER_PASS)
-            pyautogui.press('enter')
-            for num in range(1):
-                aspeak('WAKE UP FOR YOUR COMPUTER LESSON')
+    hour_duration=1
+    seconds = hour_duration * 60 * 60
+    seconds = seconds + minute_duration * 60
+    while 1 == 1:
+        seconds = seconds - 1
+        print(seconds)
+        time.sleep(1)
+        pyautogui.press('shift')
 
-            join_class()
-        elif now.hour == 13:
-            login()
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(7)
-            join = driver.find_element_by_xpath('//*[@id="join-confno"]')
-            join.send_keys(PHYSICS)
-            join.send_keys(Keys.ENTER)
-            time.sleep(5)
-            pyautogui.press('left')
-            pyautogui.press('enter')
-            time.sleep(5)
-            pyautogui.typewrite(PHYSICS_PASS)
-            pyautogui.press('enter')
-            for num in range(1):
-                aspeak('WAKE UP FOR YOUR PHYSICS LESSON')
+        if seconds == 0:
+            print('time is upppppp')
+            break
+    #LESSON3
+    PATH = "C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get(
+        'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
 
-            join_class()
-        else:
-            pyautogui.press('left')
-    else:
-        pyautogui.press('left')
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    driver.get(BIOLOGY_LINK)
+    time.sleep(5)
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('enter')
+    pyautogui.press('enter')
+    driver.quit()
+
+
+    hour_duration=1
+    seconds = hour_duration * 60 * 60
+    seconds = seconds + minute_duration * 60
+    while 1 == 1:
+        seconds = seconds - 1
+        print(seconds)
+        time.sleep(1)
+        pyautogui.press('shift')
+
+        if seconds == 0:
+            print('time is upppppp')
+            break
+    #LESSON4
+    PATH = "C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get(
+        'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
+
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    driver.get(CHEMISTRY_LINK)
+    time.sleep(5)
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('enter')
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
+
+    #LESSON5
+    hour_duration=1
+    seconds = hour_duration * 60 * 60
+    seconds = seconds + minute_duration * 60
+    while 1 == 1:
+        seconds = seconds - 1
+        print(seconds)
+        time.sleep(1)
+        pyautogui.press('shift')
+
+        if seconds == 0:
+            print('time is upppppp')
+            break
+    #LESSON4
+    PATH = "C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get(
+        'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
+
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    driver.get(ENGLISH_LINK)
+    time.sleep(5)
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('enter')
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
+
+if 'onday' in day:
+    #LESSON1
+    PATH = "C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get(
+        'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
+
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    join = driver.find_element_by_xpath('//*[@id="join-confno"]')
+    join.send_keys(BIOLOGY)
+    join.send_keys(Keys.ENTER)
+    time.sleep(5)
+
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.typewrite(BIOLOGY_PASS)
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
+    hour_duration=2
+    seconds = hour_duration * 60 * 60
+    seconds = seconds + minute_duration * 60
+    while 1 == 1:
+        seconds = seconds - 1
+        print(seconds)
+        time.sleep(1)
+        pyautogui.press('shift')
+
+        if seconds == 0:
+            print('time is upppppp')
+            break
+    #LESSON2
+    PATH = "C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get(
+        'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
+
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    driver.get(CHEMISTRY_LINK)
+    time.sleep(5)
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('enter')
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
+    hour_duration=1
+    seconds = hour_duration * 60 * 60
+    seconds = seconds + minute_duration * 60
+    while 1 == 1:
+        seconds = seconds - 1
+        print(seconds)
+        pyautogui.press('shift')
+
+        time.sleep(1)
+        if seconds == 0:
+            print('time is upppppp')
+            break
+    #LESSON3
+    PATH = "C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get(
+        'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
+
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    driver.get(MATH_LINK)
+    time.sleep(5)
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('enter')
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
+    hour_duration=1
+    seconds = hour_duration * 60 * 60
+    seconds = seconds + minute_duration * 60
+    while 1 == 1:
+        seconds = seconds - 1
+        print(seconds)
+        pyautogui.press('shift')
+
+        time.sleep(1)
+        if seconds == 0:
+            print('time is upppppp')
+            break
+    #LESSON4
+    PATH = "C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get(
+        'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
+
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    driver.get(ENGLISH_LINK)
+    time.sleep(5)
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('enter')
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
+if 'uesday' in day:
+    #LESSON1
+    PATH = "C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get(
+        'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
+
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    join = driver.find_element_by_xpath('//*[@id="join-confno"]')
+    join.send_keys(KISWAHILI)
+    join.send_keys(Keys.ENTER)
+    time.sleep(5)
+
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.typewrite(KISWAHILI_PASS)
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
+
+    hour_duration=1
+    seconds = hour_duration * 60 * 60
+    seconds = seconds + minute_duration * 60
+    while 1 == 1:
+        seconds = seconds - 1
+        print(seconds)
+        time.sleep(1)
+        pyautogui.press('shift')
+
+        if seconds == 0:
+            print('time is upppppp')
+            break
+    #LESSON2
+    PATH = "C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get(
+        'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
+
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    driver.get(MATH_LINK)
+    time.sleep(5)
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('enter')
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
+    for num in range(1):
+        aspeak('WAKE UP FOR YOUR MATH LESSON')
+
+    hour_duration=1
+    seconds = hour_duration * 60 * 60
+    seconds = seconds + minute_duration * 60
+    while 1 == 1:
+        seconds = seconds - 1
+        print(seconds)
+        time.sleep(1)
+        pyautogui.press('shift')
+
+        if seconds == 0:
+            print('time is upppppp')
+            break
+    #LESSON3
+    PATH = "C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get(
+        'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
+
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    driver.get(HISTORY_LINK)
+    time.sleep(5)
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('enter')
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
+    hour_duration=1
+    seconds = hour_duration * 60 * 60
+    seconds = seconds + minute_duration * 60
+    while 1 == 1:
+        seconds = seconds - 1
+        print(seconds)
+        time.sleep(1)
+        pyautogui.press('shift')
+
+        if seconds == 0:
+            print('time is upppppp')
+            break
+    #LESSON4
+    PATH = "C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get(
+        'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
+
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    driver.get(COMPUTER_LINK)
+    time.sleep(5)
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('enter')
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
+    hour_duration=1
+    seconds = hour_duration * 60 * 60
+    seconds = seconds + minute_duration * 60
+    while 1 == 1:
+        seconds = seconds - 1
+        print(seconds)
+        time.sleep(1)
+        pyautogui.press('shift')
+
+        if seconds == 0:
+            print('time is upppppp')
+            break
+    #LESSON5
+    PATH = "C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get(
+        'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
+
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    driver.get(PHYSICS_LINK)
+    time.sleep(5)
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('enter')
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
+
+if 'riday' in day:
+    #LESSON1
+    PATH = "C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get(
+        'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
+
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    join = driver.find_element_by_xpath('//*[@id="join-confno"]')
+    join.send_keys(MATH)
+    join.send_keys(Keys.ENTER)
+    time.sleep(5)
+
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.typewrite(MATH_PASS)
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
+    for num in range(1):
+        aspeak('WAKE UP FOR YOUR math LESSON')
+    hour_duration=2
+    seconds = hour_duration * 60 * 60
+    seconds = seconds + minute_duration * 60
+    while 1 == 1:
+        seconds = seconds - 1
+        print(seconds)
+        time.sleep(1)
+        pyautogui.press('shift')
+
+        if seconds == 0:
+            print('time is upppppp')
+            break
+    #LESSON2
+    PATH = "C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get(
+        'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
+
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    driver.get(BIOLOGY_LINK)
+    time.sleep(5)
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('enter')
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
+    for num in range(1):
+        aspeak('WAKE UP FOR YOUR BIOLOGY LESSON')
+
+    hour_duration=1
+    seconds = hour_duration * 60 * 60
+    seconds = seconds + minute_duration * 60
+    while 1 == 1:
+        seconds = seconds - 1
+        print(seconds)
+        time.sleep(1)
+        pyautogui.press('shift')
+
+        if seconds == 0:
+            print('time is upppppp')
+            break
+    #LESSON3
+    PATH = "C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get(
+        'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
+
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    driver.get(ENGLISH_LINK)
+    time.sleep(5)
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('enter')
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
+
+    hour_duration=1
+    seconds = hour_duration * 60 * 60
+    seconds = seconds + minute_duration * 60
+    while 1 == 1:
+        seconds = seconds - 1
+        print(seconds)
+        time.sleep(1)
+        pyautogui.press('shift')
+
+        if seconds == 0:
+            print('time is upppppp')
+            break
+    #LESSON4
+    PATH = "C:/Program Files/chromedriver.exe"
+    driver = webdriver.Chrome(PATH)
+    driver.get(
+        'https://accounts.google.com/o/oauth2/v2/auth/identifier?response_type=code&access_type=offline&client_id=849883241272-ed6lnodi1grnoomiuknqkq2rbvd2udku.apps.googleusercontent.com&scope=profile%20email&redirect_uri=https%3A%2F%2Fzoom.us%2Fgoogle%2Foauth&state=cW1iekN4WXNTZGlld2FtWnBLZmVmUSxnb29nbGVfc2lnbmlu&_x_zm_rtaid=PBSSE6IzSFmWLIBYzoDnBQ.1602634392303.a2f80d3ef8f253874608754a34e86efc&_x_zm_rhtaid=179&flowName=GeneralOAuthFlow')
+
+    login()
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(7)
+    driver.get(COMPUTER_LINK)
+    time.sleep(5)
+    pyautogui.press('left')
+    pyautogui.press('enter')
+    time.sleep(5)
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.press('enter')
+    pyautogui.press('enter')
+    time.sleep(10)
+    pyautogui.press('enter')
+    pyautogui.keyDown('alt')
+    pyautogui.press('v')
+    pyautogui.press('a')
+    pyautogui.keyUp('alt')
+    driver.quit()
