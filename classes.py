@@ -88,7 +88,7 @@ seconds = hour_duration*60*60
 seconds=seconds+minute_duration*60
 while 1==1:
     seconds = seconds-1
-    print(seconds)
+    print(seconds,'seconds')
     time.sleep(1)
     pyautogui.press('shift')
     if seconds==0:
