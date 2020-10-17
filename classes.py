@@ -77,7 +77,10 @@ def login():
 
 firstlessonhour = int(input('what is the first lesson hour'))
 firstlessonminute = int(input('what is the minute'))
+ampm=input('am or pm')
 day = input('what day is it')
+if 'pm' in ampm:
+    firstlessonhour+=12
 
 hour_duration = firstlessonhour-now.hour
 minute_duration= firstlessonminute-now.minute
