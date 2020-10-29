@@ -1,45 +1,43 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect,url_for,flash
 
-import mysql.connector
+from flask_mysqldb import MySQL
 
 app = Flask(__name__)
 
-mydb = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="GALGALLO10",
-    db="login_data")
-#HACKED ==== bankare	liban123	libanwario81@gmail.com
+mydb = MySQL(app)
+
+app.config['MYSQL_HOST']='galgallo.mysql.pythonanywhere-services.com'
+app.config['MYSQL_USER']='galgallo'
+app.config['MYSQL_PASSWORD']='Ronaldinho1'
+app.config['MYSQL_DB']='galgallo$exampledatabase'
 
 
 @app.route("/")
 def index():
-    return render_template("login.html", title="SignUP")
+
+    return render_template('home.html')
 
 
-@app.route("/signUp", methods=["POST"])
-def signUp():
-    username = str(request.form["username"])
-    password = str(request.form["password"])
-    email = str(request.form["email"])
-    global cursor
-    cursor = mydb.cursor()
+@app.route("/signup", methods=['POST','GET'])
+def signup():
+    if request.method=='POST':
+        username=request.form['username']
+        email=request.form['email']
+        password=request.form['password']
 
-    cursor.execute("INSERT INTO user (username,password,email)VALUES(%s,%s,%s)", (username, password, email))
-    mydb.commit()
+        cursor=mydb.connection.cursor()
+        cursor.execute("INSERT INTO example_table (names,email,password)VALUES(%s,%s,%s)", (username, email, password))
+        mydb.connection.commit()
 
-    if 'galgallo' in username and 'GALGALLO10' in password and 'ga.roba@lightacademy.ac.ke' in email:
-        return redirect('/usersthatshouldonlybeseenbygalgallo')
-    return redirect('https://www.google.com/search?sxsrf=ALeKk026Guv_2udqOA6vod7ofb5z8ir8_Q%3A1600880677537&source=hp&ei=JYBrX4XbHaKJlwST7Le4Bw&q=how+to+spot+a+dumb+person&oq=how+to+spot+a+dumb+person&gs_lcp=CgZwc3ktYWIQAzoHCCMQ6gIQJzoECCMQJzoFCAAQkQI6BQguEJECOgUIABCxAzoICAAQsQMQgwE6CAguEMcBEKMCOgQIABBDOgcIABAUEIcCOggILhCxAxCDAToFCC4QsQM6AggAOgYIABAWEB46AgguUKEgWOxXYJlbaARwAHgAgAHSBIgBsTmSAQwwLjQuMTcuMy4xLjKYAQCgAQGqAQdnd3Mtd2l6sAEK&sclient=psy-ab&ved=0ahUKEwjFgfCg4f_rAhWixIUKHRP2DXcQ4dUDCAw&uact=5')
+        return redirect('https://www.google.com')
+    else:
 
-@app.route('/usersthatshouldonlybeseenbygalgallo')
-def users():
-    resultValue = cursor.execute("SELECT * FROM user")
-    userDetails = cursor.fetchall()
-    return render_template('users.html',userDetails=userDetails)
+        return render_template('login.html')
 
 
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+
+
+
+
