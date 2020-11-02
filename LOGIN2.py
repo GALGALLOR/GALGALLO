@@ -6,10 +6,10 @@ app = Flask(__name__)
 
 mydb = MySQL(app)
 
-app.config['MYSQL_HOST']='galgallo.mysql.pythonanywhere-services.com'
-app.config['MYSQL_USER']='galgallo'
-app.config['MYSQL_PASSWORD']='Ronaldinho1'
-app.config['MYSQL_DB']='galgallo$exampledatabase'
+app.config['MYSQL_HOST']=*hidden*
+app.config['MYSQL_USER']=*hidden*
+app.config['MYSQL_PASSWORD']=*hidden*
+app.config['MYSQL_DB']=*hidden*
 
 
 @app.route("/")
