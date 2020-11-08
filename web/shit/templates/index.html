@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title> The A Journey</title>
+
+</head>
+<style>
+    h1{
+    text-align:center;
+    background-color: powderblue;
+    }
+    p{
+    color:green;
+    }
+    body{
+    background-color:pink;
+    }
+
+
+
+
+</style>
+<body>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+<p>{{ msg }}</p>
+{%endfor%}
+{%endif%}
+{%endwith%}
+
+
+<a href="/home">home</a>
+<br><a href="/logout">logout</a>
+
+<h1>WELCOME</h1>
+<p>hey {{names}}, welcome to the home page</p>
+</body>
+</html>
