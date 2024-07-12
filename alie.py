@@ -149,9 +149,9 @@ def there_exists(terms):
 
 mydb =  mysql.connector.connect(
     host="localhost",
-    user="root",
-    password="GALGALLO10",
-    db="aliebrain")
+    user="",
+    password="",
+    db="")
 cursor = mydb.cursor()
 
 def find_age():
