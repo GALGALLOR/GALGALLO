@@ -58,7 +58,7 @@ def login():
     email.send_keys(Keys.ENTER)
     time.sleep(10)
     password = driver.find_element_by_xpath('//*[@id="password"]/div[1]/div/div[1]/input')
-    password.send_keys('GALGALLO')
+    password.send_keys('')
     password.send_keys(Keys.ENTER)
     time.sleep(10)
     sign_in = driver.find_element_by_xpath('//*[@id="navbar"]/ul[2]/li[5]/a')
